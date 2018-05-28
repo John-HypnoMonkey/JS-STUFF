@@ -1,0 +1,29 @@
+<html>
+  <head>
+  </head>
+  <body>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+  <script>
+    console.log("Init message")
+    var socket = new WebSocket("ws://127.0.0.1:9999/")
+    socket.onopen = function() {
+      console.log("Connection success");
+      //socket.send("hello");
+    };
+    socket.onmessage = function(event) {
+      console.log("Data recieved: " + event.data)
+      $("#content").text(event.data)
+    };
+    socket.onerror = function(error) {
+      console.log("Error is happend");
+    };
+    socket.onclose = function (event) {
+      console.log(event.code)
+    };
+    </script>
+    <div id="content"></div>
+  </body>
+</html>
